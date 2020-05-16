@@ -22,9 +22,22 @@ class ProjectController extends Controller
         $project->title = $request->title;
         $project->description = $request->description;
         $project->owner_id = Auth::id();
+        $project->skills = $request->skills;
         $project->save();
         
         event(new ProjectCreatedEvent($project));
+        
+        return response()->json([
+            'redirect' => route('home'),
+        ]);
+    }
+    
+    public function updateProject(UpdateProjectRequest $request) {
+        Project::where('owner_id', Auth::id())->where('id', $request->id)->update([
+            'title'         => $request->title,
+            'description'   => $request->description,
+            'skills'        => $request->skills,
+        ]);
         
         return response()->json([
             'redirect' => route('home'),
@@ -44,17 +57,6 @@ class ProjectController extends Controller
         }
         
         return response()->json($project);
-    }
-    
-    public function updateProject(UpdateProjectRequest $request) {
-        Project::where('owner_id', Auth::id())->where('id', $request->id)->update([
-            'title' => $request->title,
-            'description' => $request->description,
-        ]);
-        
-        return response()->json([
-            'redirect' => route('home'),
-        ]);
     }
     
     public function listProjects()

@@ -26,6 +26,7 @@ class UpdateProjectRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:2000'],
+            'skills' => ['nullable', 'string', 'min:3', 'max:255'],
             'id' => ['required', 'integer', 'min:1'],
         ];
     }

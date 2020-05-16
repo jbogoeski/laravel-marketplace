@@ -10,9 +10,9 @@
                 class="form-control"
                 :class="{ 'is-invalid': validationErrors.title }"
                 id="projectTitle"
-                placeholder="Warp in Pylons"
+                placeholder="Add title."
                 v-model="project.title" />
-            <div class="invalid-feedback">
+            <div class="invalid-feedback" v-if="validationErrors.title">
                 {{ validationErrors.title[0] }}
             </div>
         </div>
@@ -24,10 +24,23 @@
                 id="projectDescription"
                 rows="3"
                 v-model="project.description"
-                placeholder="Pylons are essential to a high-tech society, so High Templar Keras has requested that the TensorFlow team hires more probes to warp in Pylons."
+                placeholder="Add description for your project."
             ></textarea>
-            <div class="invalid-feedback">
+            <div class="invalid-feedback" v-if="validationErrors.description">
                 {{ validationErrors.description[0] }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="skills">Skills</label>
+            <input
+                type="text"
+                class="form-control"
+                :class="{ 'is-invalid': validationErrors.skills }"
+                id="skills"
+                placeholder="PHP, HTML, Apache"
+                v-model="project.skills" />
+            <div class="invalid-feedback" v-if="validationErrors.skills">
+                {{ validationErrors.skills[0] }}
             </div>
         </div>
         <button class="btn btn-primary" @click.prevent="sendForm">Save Project</button>
@@ -51,11 +64,13 @@ export default {
             project: {
                 title: '',
                 description: '',
+                skills: '',
             },
             unknownError: false,
             validationErrors: {
                 title: '',
                 description: '',
+                skills: '',
             },
         };
     },
@@ -68,6 +83,7 @@ export default {
             .then(response => {
                 this.project.title = response.data.title;
                 this.project.description = response.data.description;
+                this.project.skills = response.data.skills;
             })
             .catch(error => {
                 console.log(error);
@@ -98,6 +114,7 @@ export default {
                     }
 
                     this.validationErrors = error.response.data.errors;
+                    console.log(this.validationErrors);
                 });
         },
     },

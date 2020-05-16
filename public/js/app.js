@@ -2028,6 +2028,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     mode: {
@@ -2043,12 +2056,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       project: {
         title: '',
-        description: ''
+        description: '',
+        skills: ''
       },
       unknownError: false,
       validationErrors: {
         title: '',
-        description: ''
+        description: '',
+        skills: ''
       }
     };
   },
@@ -2062,6 +2077,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     axios.get('/projects/' + this.projectId + '/details').then(function (response) {
       _this.project.title = response.data.title;
       _this.project.description = response.data.description;
+      _this.project.skills = response.data.skills;
     })["catch"](function (error) {
       console.log(error);
     });
@@ -2089,6 +2105,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
 
         _this2.validationErrors = error.response.data.errors;
+        console.log(_this2.validationErrors);
       });
     }
   }
@@ -2147,6 +2164,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     mode: {
@@ -2162,12 +2192,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       project: {
         title: '',
-        description: ''
+        description: '',
+        skills: ''
       },
       unknownError: false,
       validationErrors: {
         title: '',
-        description: ''
+        description: '',
+        skills: ''
       }
     };
   },
@@ -2181,6 +2213,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     axios.get('/projects/' + this.projectId + '/detail').then(function (response) {
       _this.project.title = response.data.title;
       _this.project.description = response.data.description;
+      _this.project.skills = response.data.skills;
     })["catch"](function (error) {
       console.log(error);
     });
@@ -38019,11 +38052,7 @@ var render = function() {
         ],
         staticClass: "form-control",
         class: { "is-invalid": _vm.validationErrors.title },
-        attrs: {
-          type: "text",
-          id: "projectTitle",
-          placeholder: "Warp in Pylons"
-        },
+        attrs: { type: "text", id: "projectTitle", placeholder: "Add title." },
         domProps: { value: _vm.project.title },
         on: {
           input: function($event) {
@@ -38035,13 +38064,15 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("div", { staticClass: "invalid-feedback" }, [
-        _vm._v(
-          "\n            " +
-            _vm._s(_vm.validationErrors.title[0]) +
-            "\n        "
-        )
-      ])
+      _vm.validationErrors.title
+        ? _c("div", { staticClass: "invalid-feedback" }, [
+            _vm._v(
+              "\n            " +
+                _vm._s(_vm.validationErrors.title[0]) +
+                "\n        "
+            )
+          ])
+        : _vm._e()
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "form-group" }, [
@@ -38063,8 +38094,7 @@ var render = function() {
         attrs: {
           id: "projectDescription",
           rows: "3",
-          placeholder:
-            "Pylons are essential to a high-tech society, so High Templar Keras has requested that the TensorFlow team hires more probes to warp in Pylons."
+          placeholder: "Add description for your project."
         },
         domProps: { value: _vm.project.description },
         on: {
@@ -38077,13 +38107,52 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("div", { staticClass: "invalid-feedback" }, [
-        _vm._v(
-          "\n            " +
-            _vm._s(_vm.validationErrors.description[0]) +
-            "\n        "
-        )
-      ])
+      _vm.validationErrors.description
+        ? _c("div", { staticClass: "invalid-feedback" }, [
+            _vm._v(
+              "\n            " +
+                _vm._s(_vm.validationErrors.description[0]) +
+                "\n        "
+            )
+          ])
+        : _vm._e()
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "skills" } }, [_vm._v("Skills")]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.project.skills,
+            expression: "project.skills"
+          }
+        ],
+        staticClass: "form-control",
+        class: { "is-invalid": _vm.validationErrors.skills },
+        attrs: { type: "text", id: "skills", placeholder: "PHP, HTML, Apache" },
+        domProps: { value: _vm.project.skills },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.project, "skills", $event.target.value)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _vm.validationErrors.skills
+        ? _c("div", { staticClass: "invalid-feedback" }, [
+            _vm._v(
+              "\n            " +
+                _vm._s(_vm.validationErrors.skills[0]) +
+                "\n        "
+            )
+          ])
+        : _vm._e()
     ]),
     _vm._v(" "),
     _c(
@@ -38146,11 +38215,7 @@ var render = function() {
         ],
         staticClass: "form-control",
         class: { "is-invalid": _vm.validationErrors.title },
-        attrs: {
-          type: "text",
-          id: "projectTitle",
-          placeholder: "Warp in Pylons"
-        },
+        attrs: { type: "text", id: "projectTitle", placeholder: "Add title" },
         domProps: { value: _vm.project.title },
         on: {
           input: function($event) {
@@ -38162,13 +38227,15 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("div", { staticClass: "invalid-feedback" }, [
-        _vm._v(
-          "\n            " +
-            _vm._s(_vm.validationErrors.title[0]) +
-            "\n        "
-        )
-      ])
+      _vm.validationErrors.title
+        ? _c("div", { staticClass: "invalid-feedback" }, [
+            _vm._v(
+              "\n            " +
+                _vm._s(_vm.validationErrors.title[0]) +
+                "\n        "
+            )
+          ])
+        : _vm._e()
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "form-group" }, [
@@ -38190,8 +38257,7 @@ var render = function() {
         attrs: {
           id: "projectDescription",
           rows: "3",
-          placeholder:
-            "Pylons are essential to a high-tech society, so High Templar Keras has requested that the TensorFlow team hires more probes to warp in Pylons."
+          placeholder: "Add description for your project."
         },
         domProps: { value: _vm.project.description },
         on: {
@@ -38204,13 +38270,56 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("div", { staticClass: "invalid-feedback" }, [
-        _vm._v(
-          "\n            " +
-            _vm._s(_vm.validationErrors.description[0]) +
-            "\n        "
-        )
-      ])
+      _vm.validationErrors.description
+        ? _c("div", { staticClass: "invalid-feedback" }, [
+            _vm._v(
+              "\n            " +
+                _vm._s(_vm.validationErrors.description[0]) +
+                "\n        "
+            )
+          ])
+        : _vm._e()
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "skills" } }, [_vm._v("Skills")]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.project.skills,
+            expression: "project.skills"
+          }
+        ],
+        staticClass: "form-control",
+        class: { "is-invalid": _vm.validationErrors.skills },
+        attrs: {
+          type: "text",
+          id: "skills",
+          placeholder: "PHP, JavaScript, HTML"
+        },
+        domProps: { value: _vm.project.skills },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.project, "skills", $event.target.value)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _vm.validationErrors.skills
+        ? _c("div", { staticClass: "invalid-feedback" }, [
+            _vm._v(
+              "\n            " +
+                _vm._s(_vm.validationErrors.skills[0]) +
+                "\n        "
+            )
+          ])
+        : _vm._e()
     ]),
     _vm._v(" "),
     _c(

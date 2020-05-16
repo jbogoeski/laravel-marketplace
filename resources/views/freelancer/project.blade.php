@@ -11,7 +11,11 @@
 
                 <div class="card-body">
 
-					<p>{{ $project->description }}</p>
+                    <p>{{ $project->description }}</p>
+
+                    @if(!empty($project->skills))
+                        <p><strong>Skills:</strong> {{ $project->skills }}</p>
+                    @endif
 
                     @if($claimable)
 					    <claim-project-button :project-id="{{ $project->id }}" />

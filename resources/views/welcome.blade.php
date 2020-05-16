@@ -10,7 +10,7 @@
                 </div>
 
                 <div class="card-body">
-                    Welcome to our humble establishment, for we are humble! :)
+                    <h3>Welcome to Marketplace</h3>
                 </div>
             </div>
         </div>

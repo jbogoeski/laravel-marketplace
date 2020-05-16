@@ -21,7 +21,6 @@ class CreateProjectsTable extends Migration
             $table->text('description');
             $table->boolean('is_active')->default(false);
 
-
             $table->timestamps();
         });
     }
