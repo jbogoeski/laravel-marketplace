@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
 -- Generation Time: May 16, 2020 at 12:56 PM
+=======
+-- Generation Time: May 16, 2020 at 11:43 AM
+>>>>>>> c0b35091c6a901b0e5ac39507dae19db962855fe
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -83,7 +87,10 @@ CREATE TABLE `projects` (
   `contractor_id` bigint(20) UNSIGNED DEFAULT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+<<<<<<< HEAD
   `skills` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+=======
+>>>>>>> c0b35091c6a901b0e5ac39507dae19db962855fe
   `is_active` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -93,6 +100,7 @@ CREATE TABLE `projects` (
 -- Dumping data for table `projects`
 --
 
+<<<<<<< HEAD
 INSERT INTO `projects` (`id`, `owner_id`, `contractor_id`, `title`, `description`, `skills`, `is_active`, `created_at`, `updated_at`) VALUES
 (3, 0, NULL, 'dada', 'dada', '', 0, NULL, NULL),
 (23, 1, NULL, 'Blog for my website', 'Need blog for my website.', 'PHP', 1, '2020-05-14 18:47:14', '2020-05-16 08:49:43'),
@@ -105,6 +113,20 @@ INSERT INTO `projects` (`id`, `owner_id`, `contractor_id`, `title`, `description
 (32, 2, NULL, 'PHP CMS expert needed', 'Senior developer talented in CMS development is required.\nDevelopers should have deep knowledge and 3+ years of experience in PHP.', 'PHP, Laravel', 1, '2020-05-16 06:42:28', '2020-05-16 08:53:05'),
 (33, 2, NULL, 'Website design', 'I want a website like www.google.com', 'PHP, WordPress', 1, '2020-05-16 06:43:10', '2020-05-16 08:52:55'),
 (34, 2, NULL, 'Game Developer needed for online card game', 'I am looking for someone who is deeply passionate about creating great multiplayer games and longs to make a career in game development.', 'PHP', 1, '2020-05-16 06:45:02', '2020-05-16 08:52:48');
+=======
+INSERT INTO `projects` (`id`, `owner_id`, `contractor_id`, `title`, `description`, `is_active`, `created_at`, `updated_at`) VALUES
+(3, 0, NULL, 'dada', 'dada', 0, NULL, NULL),
+(23, 1, NULL, 'Blog for my website', 'Need blog for my website.', 1, '2020-05-14 18:47:14', '2020-05-16 06:30:50'),
+(24, 1, 3, 'CMS Development', 'The website is developed on a built-from-scratch WordPress template. There are no plans to switch to an off-the-shelf theme or other CMS, however they may be open to it if the value is clear.\n\nAbout twice a year the organization has a round of updates that may include:\n\n- New content types & templates, including custom fields\n- Updates & redesigns of existing templates\n- Plugin additions & configuration\n\nFrom time to time, there may also be hosting issues that require support.\n\nCurrently, they are looking to expand on an existing content type to include a search and filter experience. This expansion has to potential to include development of a public facing \'application\' submission form that feeds into this content type.\n\nThere are additional tasks in this round of updates as well.\n\nThe person who replaces me will be:\n\n- a thoughtful visual designer\n- a detailed HTML/CSS coder\n- a handy javascript hacker (minimum)\n- a familiar and flexible WordPress developer\n- and a trusted client partner\n\nHowever, if your best friend wouldn\'t call you a visual designer, I don\'t mind continuing to work in that role along side you :)', 1, '2020-05-15 16:42:31', '2020-05-16 06:33:21'),
+(25, 1, NULL, 'Education website', 'Website will be for online learning and need to integrate Virtual classroom such as BrainCert,\nall pages should be in a very simple design no need for more Photos,\nall pages will be in the Arabic language, PaymentGatyw integration, Student dashboard, Teacher Dashboard plus Admin panel', 1, '2020-05-15 16:42:57', '2020-05-16 06:39:17'),
+(28, 3, NULL, 'Website for my bussines', 'Hi everyone i need website for my bussines.', 1, '2020-05-16 06:27:11', '2020-05-16 06:35:49'),
+(29, 3, 1, 'Wordpress widget', 'I need widget for my wordpress e-commerce, need to show the new products.', 1, '2020-05-16 06:28:56', '2020-05-16 06:39:32'),
+(30, 3, NULL, 'Need to update e-commerce site', 'We should update our website.\nMaybe you should have enough experience in PHP and  CMS development and customize it.\nIf you update it  successfully and perfectly', 1, '2020-05-16 06:38:47', '2020-05-16 06:38:50'),
+(31, 2, NULL, 'Woo Commerce Expert', 'I am looking for an individual/agency that could provide my ongoing development and support for various Wordpress-WooCommerce projects.', 1, '2020-05-16 06:41:38', '2020-05-16 06:41:40'),
+(32, 2, NULL, 'PHP CMS expert needed', 'Senior developer talented in CMS development is required.\nDevelopers should have deep knowledge and 3+ years of experience in PHP.', 1, '2020-05-16 06:42:28', '2020-05-16 06:42:31'),
+(33, 2, NULL, 'Website design', 'I want a website like www.google.com', 1, '2020-05-16 06:43:10', '2020-05-16 06:43:13'),
+(34, 2, NULL, 'Game Developer needed for online card game', 'I am looking for someone who is deeply passionate about creating great multiplayer games and longs to make a career in game development.', 1, '2020-05-16 06:45:02', '2020-05-16 06:45:05');
+>>>>>>> c0b35091c6a901b0e5ac39507dae19db962855fe
 
 -- --------------------------------------------------------
 
