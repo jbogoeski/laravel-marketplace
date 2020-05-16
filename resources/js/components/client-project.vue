@@ -1,0 +1,105 @@
+<template>
+    <form>
+        <div class="alert alert-danger" v-if="unknownError">
+            Something went wrong!
+        </div>
+        <div class="form-group">
+            <label for="projectTitle">Project Title</label>
+            <input
+                type="text"
+                class="form-control"
+                :class="{ 'is-invalid': validationErrors.title }"
+                id="projectTitle"
+                placeholder="Warp in Pylons"
+                v-model="project.title" />
+            <div class="invalid-feedback">
+                {{ validationErrors.title[0] }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="projectDescription">Project Description</label>
+            <textarea
+                class="form-control"
+                :class="{ 'is-invalid': validationErrors.description }"
+                id="projectDescription"
+                rows="3"
+                v-model="project.description"
+                placeholder="Pylons are essential to a high-tech society, so High Templar Keras has requested that the TensorFlow team hires more probes to warp in Pylons."
+            ></textarea>
+            <div class="invalid-feedback">
+                {{ validationErrors.description[0] }}
+            </div>
+        </div>
+        <button class="btn btn-primary" @click.prevent="sendForm">Save Project</button>
+    </form>
+</template>
+
+<script>
+export default {
+    props: {
+        mode: {
+            required: true,
+            type: String,
+        },
+        projectId: {
+            required: false,
+            type: Number,
+        },
+    },
+    data() {
+        return {
+            project: {
+                title: '',
+                description: '',
+            },
+            unknownError: false,
+            validationErrors: {
+                title: '',
+                description: '',
+            },
+        };
+    },
+    created() {
+        if (this.projectId === 0) {
+            return;
+        }
+
+        axios.get('/projects/' + this.projectId + '/details')
+            .then(response => {
+                this.project.title = response.data.title;
+                this.project.description = response.data.description;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    },
+    methods: {
+        sendForm() {
+
+            let method = 'post';
+            let project = this.project;
+
+            if (this.mode === 'update') {
+                method = 'put';
+                project = {
+                    ...this.project,
+                    id: this.projectId,
+                };
+            }
+
+            axios[method]('/projects/' + this.mode, project)
+                .then(response => {
+                    window.location.href = response.data.redirect;
+                })
+                .catch(error => {
+                    if (error.response.status !== 422) {
+                        this.unknownError = true;
+                        return;
+                    }
+
+                    this.validationErrors = error.response.data.errors;
+                });
+        },
+    },
+}
+</script>
